@@ -4,12 +4,10 @@ body {
   background: #ffffff;
   color: #000;
 }
-
 .dark-mode {
   background: #121212;
   color: #fff;
 }
-
 .card {
   border: 1px solid #ccc;
   padding: 1rem;
@@ -17,7 +15,6 @@ body {
   border-radius: 0.5rem;
   background: #f9f9f9;
 }
-
 button {
   padding: 0.5rem 1rem;
   margin-top: 1rem;
