@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#000000"/>
-  <title>Dojo Tracking</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div id="app">Loading Dojo Tracking...</div>
-  <script src="main.js"></script>
-</body>
-</html>
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches.open("dojo-cache").then(cache => {
+      return cache.addAll([
+        "/",
+        "/index.html",
+        "/style.css",
+        "/main.js",
+        "/manifest.json",
+        "/icon-192.png",
+        "/icon-512.png"
+      ]);
+    })
+  );
+});
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
+});
